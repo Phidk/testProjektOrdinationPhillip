@@ -15,8 +15,6 @@ public abstract class Ordination {
         patient.addOrdination(this);
     }
 
-    
-
     public LocalDate getStartDato() {
         return startDato;
     }
