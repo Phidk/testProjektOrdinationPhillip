@@ -13,7 +13,6 @@ public abstract class Ordination {
         this.slutDato = slutDato;
         this.patient = patient;
         patient.addOrdination(this);
-
     }
 
     
