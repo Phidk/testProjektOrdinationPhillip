@@ -4,8 +4,19 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public abstract class Ordination {
-    private final LocalDate startDato;
-    private final LocalDate slutDato;
+    private LocalDate startDato;
+    private LocalDate slutDato;
+    private Patient patient;
+
+    public Ordination(LocalDate startDato, LocalDate slutDato, Patient patient) {
+        this.startDato = startDato;
+        this.slutDato = slutDato;
+        this.patient = patient;
+        patient.addOrdination(this);
+
+    }
+
+    
 
     public LocalDate getStartDato() {
         return startDato;
