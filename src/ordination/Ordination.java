@@ -7,6 +7,7 @@ public abstract class Ordination {
     private LocalDate startDato;
     private LocalDate slutDato;
     private Patient patient;
+    private Lægemiddel lægemiddel;
 
     public Ordination(LocalDate startDato, LocalDate slutDato, Patient patient) {
         this.startDato = startDato;
@@ -21,6 +22,16 @@ public abstract class Ordination {
 
     public LocalDate getSlutDato() {
         return slutDato;
+    }
+
+
+    public void setLægemiddel(Lægemiddel lægemiddel) {
+        this.lægemiddel = lægemiddel;
+    }
+
+    /** Note: Nullable param lægemiddel. */
+    public Lægemiddel getLægemiddel() {
+        return lægemiddel;
     }
 
     /**
