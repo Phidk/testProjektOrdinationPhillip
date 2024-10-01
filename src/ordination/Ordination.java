@@ -30,7 +30,7 @@ public abstract class Ordination {
     }
 
     /** Note: Nullable param lægemiddel. */
-    public Lægemiddel getLægemiddel() {
+    public Lægemiddel getLaegemiddel() {
         return lægemiddel;
     }
 

@@ -1,5 +1,40 @@
 package ordination;
 
-public class DagligSkæv {
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+public class DagligSkæv extends Ordination {
+    private List<Dosis> doser = new ArrayList<>();
+
+    public DagligSkæv(LocalDate startDato, LocalDate slutDato, Patient patient) {
+        super(startDato, slutDato, patient);
+    }
+
+    public void addDosis(Dosis dosis) {
+        this.doser.add(dosis);
+    }
+
+    public void removeDosis(Dosis dosis) {
+        this.doser.remove(dosis);
+    }
+
+    public List<Dosis> getDoser() {
+        return doser;
+    }
+
+    @Override
+    public double samletDosis() {
+        return 0;
+    }
+
+    @Override
+    public double døgnDosis() {
+        return 0;
+    }
+
+    @Override
+    public String getType() {
+        return "";
+    }
 }
