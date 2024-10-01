@@ -16,8 +16,6 @@ public abstract class Ordination {
 
     }
 
-    
-
     public LocalDate getStartDato() {
         return startDato;
     }
