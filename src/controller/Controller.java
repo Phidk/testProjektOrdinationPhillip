@@ -31,7 +31,7 @@ public abstract class Controller {
 
         PN pn = new PN(startDato, slutDato, antal);
         pn.setLægemiddel(lægemiddel);
-//        patient.addOrdination(pn);
+        patient.addOrdination(pn);
 
         return pn;
     }
@@ -53,7 +53,7 @@ public abstract class Controller {
         DagligFast dagligFast = new DagligFast(startDato, slutDato,
                 morgenAntal, middagAntal, aftenAntal, natAntal);
         dagligFast.setLægemiddel(lægemiddel);
-//        patient.addOrdination(dagligFast);
+        patient.addOrdination(dagligFast);
 
         return dagligFast;
     }
@@ -85,7 +85,7 @@ public abstract class Controller {
         }
 
         dagligSkæv.setLægemiddel(lægemiddel);
-//        patient.addOrdination(dagligSkæv);
+        patient.addOrdination(dagligSkæv);
 
         return dagligSkæv;    }
 
