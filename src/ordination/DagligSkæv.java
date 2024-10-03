@@ -25,11 +25,7 @@ public class DagligSkæv extends Ordination {
 
     @Override
     public double samletDosis() {
-        double totalDosis = 0;
-        for (Dosis dosis : doser) {
-            totalDosis += dosis.getAntal();
-        }
-        return totalDosis * antalDage();
+        return døgnDosis() * antalDage();
     }
 
     @Override
