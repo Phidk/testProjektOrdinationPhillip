@@ -13,7 +13,7 @@ public abstract class Ordination {
         this.startDato = startDato;
         this.slutDato = slutDato;
         this.patient = patient;
-//        patient.addOrdination(this);
+        patient.addOrdination(this);
     }
 
     public LocalDate getStartDato() {
