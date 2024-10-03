@@ -13,7 +13,6 @@ public class Patient {
         this.cprNr = cprNr;
         this.navn = navn;
         this.vægt = vægt;
-        this.ordinationer = new ArrayList<>();
     }
 
     public double getVægt() {
