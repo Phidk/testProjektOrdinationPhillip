@@ -105,7 +105,7 @@ public class OrdinationDetailsPane extends GridPane {
         txtAnvendt.setText(pn.antalGangeAnvendt() + " gange");
         txtDosis.setText(pn.getAntalEnheder() + "");
 
-        txtDøgndosis.setText(pn.doegnDosis() + " "
+        txtDøgndosis.setText(pn.døgnDosis() + " "
             + pn.getLaegemiddel().getEnhed());
         txtTotalDosis.setText(pn.samletDosis() + " "
             + pn.getLaegemiddel().getEnhed());
