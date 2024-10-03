@@ -41,21 +41,21 @@ public class DagligFast extends Ordination{
         return "Daglig fast";
     }
 
-    public void addDose(int index, Dosis dosis) {
-        if (index >= 0 && index < 4) {
-            this.doser[index] = dosis;
-        } else {
-            throw new IndexOutOfBoundsException("Index must be between 0 and 3.");
-        }
-    }
-
-    public void removeDose(int index) {
-        if (index >= 0 && index < 4) {
-            this.doser[index] = null;
-        } else {
-            throw new IndexOutOfBoundsException("Index must be between 0 and 3.");
-        }
-    }
+//    public void addDose(int index, Dosis dosis) {
+//        if (index >= 0 && index < 4) {
+//            this.doser[index] = dosis;
+//        } else {
+//            throw new IndexOutOfBoundsException("Index must be between 0 and 3.");
+//        }
+//    }
+//
+//    public void removeDose(int index) {
+//        if (index >= 0 && index < 4) {
+//            this.doser[index] = null;
+//        } else {
+//            throw new IndexOutOfBoundsException("Index must be between 0 and 3.");
+//        }
+//    }
 
 
     public Dosis[] getDoser() {
