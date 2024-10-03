@@ -29,7 +29,7 @@ public abstract class Controller {
             throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
         }
 
-        PN pn = new PN(startDato, slutDato, patient, antal);
+        PN pn = new PN(startDato, slutDato, antal);
         pn.setLægemiddel(lægemiddel);
 //        patient.addOrdination(pn);
 
@@ -50,7 +50,7 @@ public abstract class Controller {
             throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
         }
 
-        DagligFast dagligFast = new DagligFast(startDato, slutDato, patient,
+        DagligFast dagligFast = new DagligFast(startDato, slutDato,
                 morgenAntal, middagAntal, aftenAntal, natAntal);
         dagligFast.setLægemiddel(lægemiddel);
 //        patient.addOrdination(dagligFast);
@@ -78,7 +78,7 @@ public abstract class Controller {
             throw new IllegalArgumentException("Antal klokkeslæt og enheder skal være ens.");
         }
 
-        DagligSkæv dagligSkæv = new DagligSkæv(startDen, slutDen, patient);
+        DagligSkæv dagligSkæv = new DagligSkæv(startDen, slutDen);
 
         for (int i = 0; i < klokkeSlet.length; i++) {
             dagligSkæv.addDosis(new Dosis(klokkeSlet[i], antalEnheder[i]));

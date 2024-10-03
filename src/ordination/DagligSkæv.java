@@ -7,8 +7,8 @@ import java.util.List;
 public class DagligSkæv extends Ordination {
     private List<Dosis> doser = new ArrayList<>();
 
-    public DagligSkæv(LocalDate startDato, LocalDate slutDato, Patient patient) {
-        super(startDato, slutDato, patient);
+    public DagligSkæv(LocalDate startDato, LocalDate slutDato) {
+        super(startDato, slutDato);
     }
 
     public void addDosis(Dosis dosis) {

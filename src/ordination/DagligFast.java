@@ -9,10 +9,10 @@ import java.time.LocalDate;
 public class DagligFast extends Ordination{
     private final Dosis[] doser = new Dosis[4];
 
-    public DagligFast(LocalDate startDato, LocalDate slutDato, Patient patient,
+    public DagligFast(LocalDate startDato, LocalDate slutDato,
                       double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 
-        super(startDato, slutDato, patient);
+        super(startDato, slutDato);
 
         doser[0] = new Dosis(LocalTime.of(8, 00), morgenAntal);
         doser[1] = new Dosis(LocalTime.of(12, 00), middagAntal);
