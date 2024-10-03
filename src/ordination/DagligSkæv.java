@@ -1,6 +1,7 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,8 @@ public class DagligSkæv extends Ordination {
         super(startDato, slutDato);
     }
 
-    public void opretDosis(Dosis dosis) {
-        this.doser.add(dosis);
+    public void opretDosis(LocalTime id, double antal) {
+        this.doser.add(new Dosis(id, antal));
     }
 
 //    public void removeDosis(Dosis dosis) {
