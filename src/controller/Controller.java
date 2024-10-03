@@ -24,7 +24,15 @@ public abstract class Controller {
             LocalDate startDato, LocalDate slutDato, Patient patient, Lægemiddel lægemiddel,
             double antal) {
 
-        return null;
+        if (startDato.isAfter(slutDato)) {
+            throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
+        }
+
+        PN pn = new PN(startDato, slutDato, patient, antal);
+        pn.setLægemiddel(lægemiddel);
+        patient.addOrdination(pn);
+
+        return pn;
     }
 
     /**
@@ -37,7 +45,16 @@ public abstract class Controller {
             LocalDate startDato, LocalDate slutDato, Patient patient, Lægemiddel lægemiddel,
             double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 
-        return null;
+        if (startDato.isAfter(slutDato)) {
+            throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
+        }
+
+        DagligFast dagligFast = new DagligFast(startDato, slutDato, patient,
+                morgenAntal, middagAntal, aftenAntal, natAntal);
+        dagligFast.setLægemiddel(lægemiddel);
+        patient.addOrdination(dagligFast);
+
+        return dagligFast;
     }
 
     /**
@@ -52,8 +69,24 @@ public abstract class Controller {
             LocalDate startDen, LocalDate slutDen, Patient patient, Lægemiddel lægemiddel,
             LocalTime[] klokkeSlet, double[] antalEnheder) {
 
-        return null;
-    }
+        if (startDen.isAfter(slutDen)) {
+            throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
+        }
+
+        if (klokkeSlet.length != antalEnheder.length) {
+            throw new IllegalArgumentException("Antal klokkeslæt og enheder skal være ens.");
+        }
+
+        DagligSkæv dagligSkæv = new DagligSkæv(startDen, slutDen, patient);
+
+        for (int i = 0; i < klokkeSlet.length; i++) {
+            dagligSkæv.addDosis(new Dosis(klokkeSlet[i], antalEnheder[i]));
+        }
+
+        dagligSkæv.setLægemiddel(lægemiddel);
+        patient.addOrdination(dagligSkæv);
+
+        return dagligSkæv;    }
 
     /**
      * Tilføj en dato for anvendelse af PN ordinationen.
@@ -61,7 +94,10 @@ public abstract class Controller {
      * kastes en IllegalArgumentException.
      */
     public static void anvendOrdinationPN(PN ordination, LocalDate dato) {
-
+        if (dato.isBefore(ordination.getStartDato()) || dato.isAfter(ordination.getSlutDato())) {
+            throw new IllegalArgumentException("Datoen er udenfor ordinationens gyldighedsperiode.");
+        }
+        ordination.anvendDosis(dato);
     }
 
     /**
@@ -69,15 +105,39 @@ public abstract class Controller {
      * (afhænger af patientens vægt).
      */
     public static double anbefaletDosisPrDøgn(Patient patient, Lægemiddel lægemiddel) {
+        double vægt = patient.getVægt();
+        double dosis;
 
-        return 0;
+        if (vægt < 25) {
+            dosis = lægemiddel.getEnhedPrKgPrDøgnLet();
+        } else if (vægt <= 120) {
+            dosis = lægemiddel.getEnhedPrKgPrDøgnNormal();
+        } else {
+            dosis = lægemiddel.getEnhedPrKgPrDøgnTung();
+        }
+
+        return vægt * dosis;
+
     }
 
     /** Returner antal ordinationer for det givne vægtinterval og det givne lægemiddel. */
     public static int antalOrdinationerPrVægtPrLægemiddel(
             double vægtStart, double vægtSlut, Lægemiddel lægemiddel) {
 
-        return 0;
+        int count = 0;
+        List<Patient> patienter = storage.getAllPatienter();
+
+        for (Patient patient : patienter) {
+            if (patient.getVægt() >= vægtStart && patient.getVægt() <= vægtSlut) {
+                for (Ordination ordination : patient.getOrdinationer()) {
+                    if (ordination.getLaegemiddel().equals(lægemiddel)) {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
     }
 
     public static List<Patient> getAllPatienter() {
