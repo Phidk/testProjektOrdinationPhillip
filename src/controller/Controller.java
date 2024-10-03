@@ -8,6 +8,7 @@ import ordination.*;
 import storage.Storage;
 
 public abstract class Controller {
+    //Kommentar!
     private static Storage storage;
 
     public static void setStorage(Storage storage) {
