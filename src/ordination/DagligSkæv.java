@@ -12,8 +12,8 @@ public class DagligSkæv extends Ordination {
         super(startDato, slutDato);
     }
 
-    public void opretDosis(LocalTime id, double antal) {
-        this.doser.add(new Dosis(id, antal));
+    public void opretDosis(LocalTime tid, double antal) {
+        this.doser.add(new Dosis(tid, antal));
     }
 
 //    public void removeDosis(Dosis dosis) {
