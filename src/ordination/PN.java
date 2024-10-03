@@ -31,16 +31,7 @@ public class PN extends Ordination {
         }
 
         LocalDate firstUsage = anvendelsesDatoer.get(0);
-        LocalDate lastUsage = anvendelsesDatoer.get(0);
-
-        for (LocalDate date : anvendelsesDatoer) {
-            if (date.isBefore(firstUsage)) {
-                firstUsage = date;
-            }
-            if (date.isAfter(lastUsage)) {
-                lastUsage = date;
-            }
-        }
+        LocalDate lastUsage = anvendelsesDatoer.get(anvendelsesDatoer.size() - 1);
 
         long daysBetween = ChronoUnit.DAYS.between(firstUsage, lastUsage) + 1;
         return samletDosis() / daysBetween;
