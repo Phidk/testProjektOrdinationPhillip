@@ -11,14 +11,14 @@ public class DagligSkæv extends Ordination {
         super(startDato, slutDato);
     }
 
-    public void addDosis(Dosis dosis) {
-        this.doser.add(dosis);
-    }
-
-    public void removeDosis(Dosis dosis) {
-        this.doser.remove(dosis);
-    }
-
+//    public void addDosis(Dosis dosis) {
+//        this.doser.add(dosis);
+//    }
+//
+//    public void removeDosis(Dosis dosis) {
+//        this.doser.remove(dosis);
+//    }
+//
     public List<Dosis> getDoser() {
         return doser;
     }
