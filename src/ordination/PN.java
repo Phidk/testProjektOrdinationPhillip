@@ -26,6 +26,7 @@ public class PN extends Ordination {
 
     @Override
     public double døgnDosis() {
+        anvendelsesDatoer.sort(null);
         if (anvendelsesDatoer.isEmpty()) {
             return 0;
         }
