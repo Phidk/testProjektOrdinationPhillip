@@ -91,7 +91,8 @@ public abstract class Controller {
         dagligSkæv.setLægemiddel(lægemiddel);
         patient.addOrdination(dagligSkæv);
 
-        return dagligSkæv;    }
+        return dagligSkæv;
+    }
 
     /**
      * Tilføj en dato for anvendelse af PN ordinationen.
