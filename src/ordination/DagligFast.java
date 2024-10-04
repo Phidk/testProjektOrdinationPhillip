@@ -33,7 +33,7 @@ public class DagligFast extends Ordination{
             dagligDosis += dosis.getAntal();
         }
 
-        return dagligDosis;
+        return dagligDosis; 
     }
 
     @Override
