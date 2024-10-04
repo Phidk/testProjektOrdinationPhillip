@@ -15,6 +15,10 @@ public class Dosis {
         return antal;
     }
 
+    public LocalTime getTid() {
+        return tid;
+    }
+
     @Override
     public String toString() {
         return "Kl: " + tid + "   antal:  " + antal;
