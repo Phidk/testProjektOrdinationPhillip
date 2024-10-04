@@ -19,6 +19,10 @@ public class PN extends Ordination {
         return antalEnheder;
     }
 
+    public List<LocalDate> getAnvendelsesDatoer() {
+        return anvendelsesDatoer;
+    }
+
     @Override
     public double samletDosis() {
         return antalEnheder * anvendelsesDatoer.size();
