@@ -36,11 +36,11 @@ public class ControllerTest {
         an = new double[]{1, 1, 1};
     }
 
+    //TC12
     @Test
-    void opretPNOrdination() {
+    void testOpretPNOrdination() {
 
-        PN pn = Controller.opretPNOrdination
-                (startDato, LocalDate.of(2024,10,4), patient, lægemiddel, 2);
+        PN pn = Controller.opretPNOrdination (startDato, LocalDate.of(2024,10,4), patient, lægemiddel, 2);
 
         assertEquals(startDato, pn.getStartDato());
         assertEquals(LocalDate.of(2024, 10, 4), pn.getSlutDato());
@@ -48,9 +48,9 @@ public class ControllerTest {
         assertEquals(pn, patient.getOrdinationer().getFirst());
         assertEquals(pn.getLaegemiddel(), lægemiddel);
     }
-
+    //TC13
     @Test
-    void opretPNOrdinationDatoException() {
+    void testOpretPNOrdinationDatoException() {
         startDato = LocalDate.of(2024, 11, 3);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> Controller.opretPNOrdination
@@ -60,17 +60,18 @@ public class ControllerTest {
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC14
     @Test
-    void opretPNOrdinationAntalException() {
+    void testOpretPNOrdinationAntalException() {
 
         Exception exception = assertThrows(IllegalArgumentException.class,
                 () -> Controller.opretPNOrdination(startDato, LocalDate.of(2024, 10, 4), patient, lægemiddel, 0));
-
 
         assertEquals("Antal må ikke være nul eller under.", exception.getMessage());
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC15
     @Test
     void opretDagligFastOrdination() {
 
@@ -85,8 +86,9 @@ public class ControllerTest {
         assertEquals(128, dagligFast.samletDosis());
     }
 
+    //TC16
     @Test
-    void opretDagligFastOrdinationMedDatoException() {
+    void testOpretDagligFastOrdinationMedDatoException() {
         startDato = LocalDate.of(2024, 11, 3);
         slutDato = LocalDate.of(2024, 10, 3);
 
@@ -98,8 +100,9 @@ public class ControllerTest {
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC17
     @Test
-    void opretDagligFastOrdinationMedDosisException() {
+    void testOpretDagligFastOrdinationMedDosisException() {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 Controller.opretDagligFastOrdination(startDato, slutDato, patient, lægemiddel,
@@ -109,8 +112,9 @@ public class ControllerTest {
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC18
     @Test
-    void opretDagligSkævOrdination() {
+    void testPpretDagligSkævOrdination() {
         slutDato = LocalDate.of(2024, 10, 5);
 
         DagligSkæv dagligSkæv = Controller.opretDagligSkævOrdination(startDato, slutDato, patient, lægemiddel,
@@ -127,8 +131,9 @@ public class ControllerTest {
         assertEquals(LocalTime.of(20,00), dagligSkæv.getDoser().get(2).getTid());
     }
 
+    //TC19
     @Test
-    void opretDagligSkævOrdinationMedDatoException() {
+    void testPpretDagligSkævOrdinationMedDatoException() {
 
         slutDato = LocalDate.of(2024, 10, 2);
 
@@ -139,8 +144,9 @@ public class ControllerTest {
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC20
     @Test
-    void opretDagligSkævOrdinationMedArraySizeException() {
+    void testOpretDagligSkævOrdinationMedArraySizeException() {
         an = new double[]{1, 1};
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -150,19 +156,20 @@ public class ControllerTest {
         assertEquals(0, patient.getOrdinationer().size());
     }
 
+    //TC21
     @Test
-    void ordinationPNAnvendt() {
+    void testOrdinationPNAnvendt() {
         slutDato = LocalDate.of(2024, 10, 13);
         PN ordination = Controller.opretPNOrdination(startDato, slutDato, patient, lægemiddel, 2);
 
         Controller.anvendOrdinationPN(ordination, startDato);
 
-
         assertEquals(startDato, ordination.getAnvendelsesDatoer().getFirst());
     }
 
+    //TC22
     @Test
-    void ordinationPNAnvendtSidsteDato() {
+    void testOrdinationPNAnvendtSidsteDato() {
         slutDato = LocalDate.of(2024, 10, 13);
         PN ordination = Controller.opretPNOrdination(startDato, slutDato, patient, lægemiddel, 2);
 
@@ -171,8 +178,9 @@ public class ControllerTest {
         assertEquals(slutDato, ordination.getAnvendelsesDatoer().getLast());
     }
 
+    //TC23
     @Test
-    void ordinationPNAnvendtFørDatoException() {
+    void testOrdinationPNAnvendtFørDatoException() {
         slutDato = LocalDate.of(2024, 10, 13);
         PN ordination = Controller.opretPNOrdination(startDato, slutDato, patient, lægemiddel, 2);
 
@@ -182,8 +190,9 @@ public class ControllerTest {
         assertEquals("Datoen er udenfor ordinationens gyldighedsperiode.", exception.getMessage());
     }
 
+    //TC24
     @Test
-    void ordinationPNAnvendtEfterDatoException() {
+    void testOrdinationPNAnvendtEfterDatoException() {
         slutDato = LocalDate.of(2024, 10, 13);
         PN ordination = Controller.opretPNOrdination(startDato, slutDato, patient, lægemiddel, 2);
 
@@ -193,16 +202,19 @@ public class ControllerTest {
         assertEquals("Datoen er udenfor ordinationens gyldighedsperiode.", exception.getMessage());
     }
 
+    //TC25
     @Test
-    void anbefaletDosisPrDøgn24Kg() {
+    void testAnbefaletDosisPrDøgn24Kg() {
         patient = new Patient("123456-7890", "Jens Jensen", 24);
         lægemiddel = new Lægemiddel("Acetylsalicylsyre",
                 1, 3, 7, "Styk");
 
         assertEquals(24, Controller.anbefaletDosisPrDøgn(patient, lægemiddel));
     }
+
+    //TC26
     @Test
-    void anbefaletDosisPrDøgn25Kg() {
+    void testAnbefaletDosisPrDøgn25Kg() {
         patient = new Patient("123456-7890", "Jens Jensen", 25);
         lægemiddel = new Lægemiddel("Acetylsalicylsyre",
                 1, 3, 7, "Styk");
@@ -210,8 +222,9 @@ public class ControllerTest {
         assertEquals(75, Controller.anbefaletDosisPrDøgn(patient, lægemiddel));
     }
 
+    //TC27
     @Test
-    void anbefaletDosisPrDøgn120Kg() {
+    void testAnbefaletDosisPrDøgn120Kg() {
         patient = new Patient("123456-7890", "Jens Jensen", 120);
         lægemiddel = new Lægemiddel("Acetylsalicylsyre",
                 1, 3, 7, "Styk");
@@ -219,8 +232,9 @@ public class ControllerTest {
         assertEquals(360, Controller.anbefaletDosisPrDøgn(patient, lægemiddel));
     }
 
+    //TC28
     @Test
-    void anbefaletDosisPrDøgn121Kg() {
+    void testAnbefaletDosisPrDøgn121Kg() {
         patient = new Patient("123456-7890", "Jens Jensen", 121);
         lægemiddel = new Lægemiddel("Acetylsalicylsyre",
                 1, 3, 7, "Styk");
