@@ -29,6 +29,10 @@ public abstract class Controller {
             throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
         }
 
+        if (antal <= 0) {
+            throw new IllegalArgumentException("Antal må ikke være nul eller under.");
+        }
+
         PN pn = new PN(startDato, slutDato, antal);
         pn.setLægemiddel(lægemiddel);
         patient.addOrdination(pn);
