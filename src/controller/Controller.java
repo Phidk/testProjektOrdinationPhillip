@@ -54,6 +54,10 @@ public abstract class Controller {
             throw new IllegalArgumentException("Startdatoen må ikke være efter slutdatoen.");
         }
 
+        if (morgenAntal <= 0 && middagAntal <= 0 && aftenAntal <= 0 && natAntal <= 0) {
+            throw new IllegalArgumentException("Mindst en dosis skal være over 0.");
+        }
+
         DagligFast dagligFast = new DagligFast(startDato, slutDato,
                 morgenAntal, middagAntal, aftenAntal, natAntal);
         dagligFast.setLægemiddel(lægemiddel);
